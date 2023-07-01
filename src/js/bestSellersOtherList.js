@@ -1,11 +1,11 @@
-import { topBooks, selectedCategory } from './api';
+import { topBooks, selectedCategory } from './api.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { modalOpen } from './popUp';
 
 const booksList = document.querySelector('.js-gallery-books');
 const galleryTitle = document.querySelector('.gallery-heading');
 
-getTopBooks().then(data => {
+topBooks().then(data => {
   if (data.length === 0) {
     Notify.failure(
       'Sorry, there are no best sellers books. '
@@ -26,7 +26,7 @@ function createTitleMarcup() {
 }
 
 function createBooklistMarcup(data) {
-  const marcup = [];
+  const markup = [];
 
  
 
@@ -54,6 +54,8 @@ function createBooklistMarcup(data) {
       bookCards.push(bookCardsMarcup);
     });
 
+    
+
     const btnSeeMore = `<button type="button" id="${data[i].list_name}" class="see-more">
         see more
       </button>`;
@@ -67,6 +69,7 @@ function createBooklistMarcup(data) {
 
   return marcup.join('');
 }
+
 function onBtnOpen(evt) {
   const bookId = evt.currentTarget.id;
   modalOpen(bookId);
