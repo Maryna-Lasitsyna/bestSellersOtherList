@@ -72,7 +72,7 @@ function createBooklistMarcup(data) {
 
   const ttt = object.books.map(rem => {
     if (!rem.book_image) {
-      const bookImage = '../img/bestsellers/book-cover-min.png';
+      const bookImage = '../img/bestsellers/cover.jpg';
       return `<li id="${rem._id}" class = "gallery-book-cards">
     <div class = "card-container">
     <img class="gallery-books-img" src="${bookImage}" alt="${rem.title}" loading="lazy">
