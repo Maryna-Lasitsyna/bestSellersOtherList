@@ -3,37 +3,15 @@
     <h1 class="gallery-heading"></h1>
     <ul class="gallery-books js-gallery-books"></ul>
   </div>
+  <button type="button" class="btn-up btn-up-hide">
+  <svg class="" width="24" height="24">
+    <use href="/src/img/symbol-defs.svg#icon-material-symbols"></use>
+  </svg>
+</button>
 </section>
 
 
-<button type="button" class="btn-up btn-up-hide"></button>
 
 
-<!-- разметка в JS -->
 
-<li id="${_id}" class="gallery-books-card">
-  <div class="card-container">
-    <img
-      class="gallery-books-img"
-      src="${book_image}"
-      alt="${title}"
-      loading="lazy"
-    />
-  </div>
-  <h2 class="gallery-books-title">${title}</h2>
-  <p class="gallery-books-author">${author}</p>
-</li>
 
-<span class="gallery-heading-span">Books</span>
-
-<li class="category-page">
-  <p class="gallery-category-heading">${data[i].list_name}</p>
-  <ul class="category-page-list">
-    ${bookCards.join('')}
-  </ul>
-  ${btnSeeMore}
-</li>
-
-<button type="button" id="${data[i].list_name}" class="see-more">
-  see more
-</button>
