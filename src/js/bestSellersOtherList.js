@@ -108,7 +108,7 @@ function addCardsByCategory() {
 
 
 function addColorToTitle() {
-  const textgalleryTitle = galleryTitle.innerHTML;
+  const textGalleryTitle = galleryTitle.innerHTML;
 
   let wordsArray = categoryValue.split(' ');
   let lastWord = wordsArray.pop();
