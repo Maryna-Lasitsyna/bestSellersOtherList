@@ -114,7 +114,7 @@ function addColorToTitle() {
   let lastWord = wordsArray.pop();
   let firstPart = wordsArray.join(' ');
 
-  galleryTitle.innerHTML = ${firstPart} <span class="gallery-heading-span-accent">${lastWord}</span>;
+  galleryTitle.innerHTML = `${firstPart} <span class="gallery-heading-span-accent">${lastWord}</span>`;
 }
 
 
