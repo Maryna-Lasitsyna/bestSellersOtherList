@@ -10,8 +10,8 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"/>
         
-      <script type="module" crossorigin src="/Bookshelt/assets/index-646cc477.js"></script>
-      <link rel="stylesheet" href="/Bookshelt/assets/index-eb804bfa.css">
+      <script type="module" crossorigin src="/Bookshelt/assets/index-49b74bba.js"></script>
+      <link rel="stylesheet" href="/Bookshelt/assets/index-8bd7ea3b.css">
     </head> 
 <body>
     <!-- Іван - Header -->
@@ -22,16 +22,15 @@
   <div class="support-funds-container">
     <h2 class="support-funds-title">Support Ukraine</h2>
     <div class="swiper">
-      <div class="swiper-wrapper funds-list"></div>
+      <ul class="swiper-wrapper funds-list"></ul>
     </div>
     <button type="button" class="support-funds-btn js-scroll-down">
       <svg class="scroll-down-icon" width="12" height="12">
-        <use href="/Bookshelt/assets/symbol-defs-d997bc67.svg#icon-arrow"></use>
+        <use href="/Bookshelt/assets/symbol-defs-584d9cb4.svg#icon-arrow"></use>
       </svg>
     </button>
   </div>
 </section>
-
 
     <!-- Марина, Наталія - Best sellers and other lists -->
     <section class="section-bestsellers">
@@ -39,40 +38,18 @@
     <h1 class="gallery-heading"></h1>
     <ul class="gallery-books js-gallery-books"></ul>
   </div>
+  <button type="button" class="btn-up btn-up-hide">
+  <svg class="" width="24" height="24">
+    <use href="/src/img/symbol-defs.svg#icon-material-symbols"></use>
+  </svg>
+</button>
 </section>
 
 
-<button type="button" class="btn-up btn-up-hide"></button>
 
 
-<!-- разметка в JS -->
 
-<li id="${_id}" class="gallery-books-card">
-  <div class="card-container">
-    <img
-      class="gallery-books-img"
-      src="${book_image}"
-      alt="${title}"
-      loading="lazy"
-    />
-  </div>
-  <h2 class="gallery-books-title">${title}</h2>
-  <p class="gallery-books-author">${author}</p>
-</li>
 
-<span class="gallery-heading-span">Books</span>
-
-<li class="category-page">
-  <p class="gallery-category-heading">${data[i].list_name}</p>
-  <ul class="category-page-list">
-    ${bookCards.join('')}
-  </ul>
-  ${btnSeeMore}
-</li>
-
-<button type="button" id="${data[i].list_name}" class="see-more">
-  see more
-</button>
 
 
     <!-- Віталій - Pop up(modal при натисканні на 1 книгу) -->
