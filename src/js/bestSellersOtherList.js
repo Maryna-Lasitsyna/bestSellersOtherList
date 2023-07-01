@@ -1,6 +1,6 @@
 import { topBooks, selectedCategory } from './api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { modalOpen } from './popUP';
+// import { modalOpen } from './popUp';
 
 const booksList = document.querySelector('.js-gallery-books');
 const galleryTitle = document.querySelector('.gallery-heading');
