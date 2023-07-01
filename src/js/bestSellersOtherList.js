@@ -7,9 +7,7 @@ const galleryTitle = document.querySelector('.gallery-heading');
 
 topBooks().then(data => {
   if (data.length === 0) {
-    Notify.failure(
-      'Sorry, there are no best sellers books. '
-    );
+    Notify.failure('Sorry, there are no best sellers books. ');
     return;
   }
   galleryTitle.insertAdjacentHTML('beforeend', createTitleMarcup());
@@ -28,19 +26,17 @@ function createTitleMarcup() {
 function createBooklistMarcup(data) {
   const markup = [];
 
- 
+  if (Array.isArray(data)) {
+    data.forEach((element, i) => {
+      const booksArr = data[i].books;
+      const bookCards = [];
 
-  data.forEach((element, i) => {
-    const booksArr = data[i].books;
-    const bookCards = [];
+      booksArr.forEach(({ _id, book_image, title, author }) => {
+        if (!book_image) {
+          book_image = '../img/bestsellers/book-cover-min.png';
+        }
 
-    booksArr.forEach(({ _id, book_image, title, author }) => {
-    
-      if (!book_image) {
-        book_image = '../img/bestsellers/book-cover-min.png';
-      }
-
-      const bookCardsMarcup = `<li id="${_id}" class = "gallery-book-cards">
+        const bookCardsMarkup = `<li id="${_id}" class = "gallery-book-cards">
               <div class = "card-container">
                 <img class="gallery-books-img" src="${book_image}" alt="${title}" loading="lazy">
                   <div class="port-overlay">
@@ -51,23 +47,24 @@ function createBooklistMarcup(data) {
                 <p class="gallery-books-author">${author}</p>
                 </li>`;
 
-      bookCards.push(bookCardsMarcup);
-    });
+        bookCards.push(bookCardsMarkup);
+      });
 
-    
-
-    const btnSeeMore = `<button type="button" id="${data[i].list_name}" class="see-more">
+      const btnSeeMore = `<button type="button" id="${data[i].list_name}" class="see-more">
         see more
       </button>`;
 
-    marcup.push(`<li class = "category-page">
+      markup.push(`<li class = "category-page">
             <p class = "gallery-category-heading">${data[i].list_name}</p>
             <ul class = "category-page-list">${bookCards.join('')}</ul>
             ${btnSeeMore}
             </li>`);
-  });
+    });
+  } else {
+    console.error('data is not an array.');
+  }
 
-  return marcup.join('');
+  return markup.join('');
 }
 
 function onBtnOpen(evt) {
@@ -75,11 +72,8 @@ function onBtnOpen(evt) {
   modalOpen(bookId);
 }
 
-
-
 const eventLister = document.querySelector('.gallery-books');
 let categoryValue = 'ALL CATEGORIES';
-
 
 eventLister.addEventListener('click', onMoreBtnClick);
 function onMoreBtnClick(e) {
@@ -90,7 +84,6 @@ function onMoreBtnClick(e) {
     changeColorTitle(categoryValue);
   }
 }
-
 
 function addCardsByCategory() {
   selectedCategory(categoryValue).then(booksArr => {
@@ -109,7 +102,6 @@ function addCardsByCategory() {
   });
 }
 
-
 function addColorToTitle() {
   const textGalleryTitle = galleryTitle.innerHTML;
 
@@ -120,7 +112,6 @@ function addColorToTitle() {
   galleryTitle.innerHTML = `${firstPart} <span class="gallery-heading-span-accent">${lastWord}</span>`;
 }
 
-
 function addModal() {
   const booksGalleryCards = document.querySelectorAll('.gallery-book-cards');
 
@@ -128,7 +119,6 @@ function addModal() {
     card.addEventListener('click', onBtnOpen);
   });
 }
-
 
 const btnUp = {
   el: document.querySelector('.btn-up'),
@@ -154,10 +144,10 @@ const btnUp = {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
-    }
-  }
-}
+    };
+  },
+};
 
 btnUp.addEventListener();
