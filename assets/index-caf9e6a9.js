@@ -16,6 +16,7 @@ Notiflix needs to be appended to the "<`+d+'>" element, but you called it before
     </div>
   <h2 class="gallery-books-title">${o.title}</h2>
   <p class="gallery-books-author">${o.author}</p>
-  </li><button type="button" id="${o.list_name}" class="see-more">
+    </li>
+    <button type="button" id="${o.list_name}" class="see-more">
   see more
 </button>`})}function re(t){const e=t.currentTarget.id;modalOpen(e)}const Rn=document.querySelector(".gallery-books");let z="ALL CATEGORIES";Rn.addEventListener("click",On);function On(t){t.target.localName==="button"&&(z=t.target.getAttribute("id"),Ln(),changeColorTitle(z))}function Ln(){Sn(z).then(t=>{if(!t.length){Y.Notify.failure(`Sorry, there are no ${z} books.`);return}Q.innerHTML=z,ie.innerHTML=createMoreBooks(t),Bn(),Pn()})}function Bn(){Q.innerHTML;let t=z.split(" "),e=t.pop(),n=t.join(" ");Q.innerHTML=`${n} <span class="gallery-heading-span-accent">${e}</span>`}function Pn(){document.querySelectorAll(".gallery-book-cards").forEach(e=>{e.addEventListener("click",re)})}const In={el:document.querySelector(".btn-up"),show(){this.el.classList.remove("btn-up_hide")},hide(){this.el.classList.add("btn-up_hide")},addEventListener(){window.addEventListener("scroll",()=>{(window.scrollY||document.documentElement.scrollTop)>400?this.show():this.hide()}),document.querySelector(".btn-up").onclick=()=>{window.scrollTo({top:0,left:0,behavior:"smooth"})}}};In.addEventListener();
