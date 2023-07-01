@@ -111,20 +111,20 @@ async function fetchAllCategoriesAndBooks() {
 fetchAllCategoriesAndBooks();
 
 // Список книг из заданной категории
-async function fetchBooksByCategory(categoryName) {
-  try {
-    const response = await selectedCategory(categoryName);
-    const booksInCategory = response.data;
+// async function fetchBooksByCategory(categoryName) {
+//   try {
+//     const response = await selectedCategory(categoryName);
+//     const booksInCategory = response.data;
 
-    if (booksInCategory.length > 0) {
-      booksInCategory.forEach(book => {
-        const bookMarkup = createBookMarkup(book);
-        booksList.insertAdjacentHTML('beforeend', bookMarkup);
-      });
-    } else {
-      console.log(`Category "${categoryName}" no books.`);
-    }
-  } catch (error) {
-    console.error('Error fetching books by category:', error);
-  }
-}
+//     if (booksInCategory.length > 0) {
+//       booksInCategory.forEach(book => {
+//         const bookMarkup = createBookMarkup(book);
+//         booksList.insertAdjacentHTML('beforeend', bookMarkup);
+//       });
+//     } else {
+//       console.log(`Category "${categoryName}" no books.`);
+//     }
+//   } catch (error) {
+//     console.error('Error fetching books by category:', error);
+//   }
+// }
