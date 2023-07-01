@@ -40,10 +40,7 @@ function createTitleMarcup() {
 //         const bookCardsMarkup = `<li id="${_id}" class = "gallery-book-cards">
 //               <div class = "card-container">
 //                 <img class="gallery-books-img" src="${book_image}" alt="${title}" loading="lazy">
-//                   <div class="port-overlay">
-//                     <p>quick view</p>
-//                   </div>
-//               </div>
+//                 </div>
 //                 <h2 class="gallery-books-title">${title}</h2>
 //                 <p class="gallery-books-author">${author}</p>
 //                 </li>`;
@@ -69,27 +66,6 @@ function createTitleMarcup() {
 // }
 
 
-// function createBooklistMarcup(data) {
-//   const object = data.data[0];
-
-//   const ttt = object.books.map(rem => {
-//     if (!rem.book_image) {
-//       rem.book_image = '../img/bestsellers/book-cover-min.png';
-//     } else {
-//       return `<li id="${rem._id}" class = "gallery-book-cards">
-//     <div class = "card-container">
-//     <img class="gallery-books-img" src="${rem.book_image}" alt="${rem.title}" loading="lazy">
-    
-//     </div>
-//     <h2 class="gallery-books-title">${rem.title}</h2>
-//     <p class="gallery-books-author">${rem.author}</p>
-//     </li>`;
-//     }
-//   });
-//   return ttt;
-// }
-
-
 
 function createBooklistMarcup(data) {
   const object = data.data[0];
@@ -100,8 +76,7 @@ function createBooklistMarcup(data) {
       return `<li id="${rem._id}" class = "gallery-book-cards">
     <div class = "card-container">
     <img class="gallery-books-img" src="${bookImage}" alt="${rem.title}" loading="lazy">
-    
-    </div>
+        </div>
     <h2 class="gallery-books-title">${rem.title}</h2>
     <p class="gallery-books-author">${rem.author}</p>
     </li>`;
@@ -109,11 +84,12 @@ function createBooklistMarcup(data) {
     return `<li id="${rem._id}" class = "gallery-book-cards">
   <div class = "card-container">
   <img class="gallery-books-img" src="${rem.book_image}" alt="${rem.title}" loading="lazy">
-  
-  </div>
+    </div>
   <h2 class="gallery-books-title">${rem.title}</h2>
   <p class="gallery-books-author">${rem.author}</p>
-  </li>`;
+  </li><button type="button" id="${rem.list_name}" class="see-more">
+  see more
+</button>`;
   });
   return ttt;
 }
