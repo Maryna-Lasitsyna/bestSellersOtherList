@@ -7,11 +7,13 @@ img {
   max-width: 100%;
   height: auto;
 }
+
 .gallery-container {
     padding-left: 20px;
     padding-right: 20px;
     width: 100%;
   }
+  
 .gallery-heading {
   margin-top: 40px;
   margin-bottom: 40px;

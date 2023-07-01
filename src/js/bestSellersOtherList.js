@@ -87,9 +87,16 @@ function createBooklistMarcup(data) {
     </div>
   <h2 class="gallery-books-title">${rem.title}</h2>
   <p class="gallery-books-author">${rem.author}</p>
-  </li><button type="button" id="${rem.list_name}" class="see-more">
+    </li>
+    <button type="button" id="${rem.list_name}" class="see-more">
   see more
 </button>`;
+    
+    // markup.push(`<li class = "category-page">
+    //  <p class = "gallery-category-heading">${data[i].list_name}</p>
+    //   <ul class = "category-page-list">${bookCards.join('')}</ul>
+    //    ${btnSeeMore}
+    //   </li>`);
   });
   return ttt;
 }
