@@ -1,29 +1,36 @@
 import { topBooks, selectedCategory } from './api.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { modalOpen } from './popUp.js';
+// import { modalOpen } from './popUp';
 
 const booksList = document.querySelector('.js-gallery-books');
 const galleryTitle = document.querySelector('.gallery-heading');
 
+
+// получаем данные, если массив пустой, показываем увеедомление
 topBooks().then(data => {
   if (data.length === 0) {
     Notify.failure('Sorry, there are no best sellers books. ');
     return;
   }
 
+  // заголовок перед списком
   galleryTitle.insertAdjacentHTML('beforeend', createTitleMarkup());
+  // разметка спмска книг
   booksList.insertAdjacentHTML('beforeend', createBooklistMarkup(data));
 
+  // список всех элементов, обработчик событий на каждый
   const galeryList = document.querySelectorAll('.gallery-book-cards');
   galeryList.forEach(element => {
     element.addEventListener('click', onBtnOpen);
   });
 });
 
+// разметка заголовка
 function createTitleMarkup() {
   return 'Best Sellers <span class="gallery-heading-span">Books</span>';
 }
 
+// разметка списка книг
 function createBooklistMarkup(data) {
   const object = data.data[0];
   const createCards = object.books.map(rem => {
@@ -46,14 +53,17 @@ function createBooklistMarkup(data) {
   return createCards.join('');
 }
 
+
+// обработчик события
 function onBtnOpen(evt) {
   const bookId = evt.currentTarget.id;
   modalOpen(bookId);
 }
-
+// по категориям
 const eventLister = document.querySelector('.gallery-books');
 let categoryValue = 'ALL CATEGORIES';
 
+// рендер списка книг
 eventLister.addEventListener('click', onMoreBtnClick);
 function onMoreBtnClick(e) {
   if (e.target.localName === 'button') {
@@ -64,10 +74,11 @@ function onMoreBtnClick(e) {
   }
 }
 
+// рендер карточек книг по категориям
 function addCardsByCategory() {
   selectedCategory(categoryValue).then(booksArr => {
     if (!booksArr.length) {
-      Notify.failure`(Sorry, there are no ${categoryValue} books.)`;
+      Notify.failure(`Sorry, there are no ${categoryValue} books.`);
       return;
     }
 
