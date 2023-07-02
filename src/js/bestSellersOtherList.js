@@ -1,6 +1,6 @@
 import { topBooks, selectedCategory } from './api.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { modalOpen } from './popUp';
+import { modalOpen } from './popUp.js';
 
 const booksList = document.querySelector('.js-gallery-books');
 const galleryTitle = document.querySelector('.gallery-heading');
@@ -10,7 +10,7 @@ topBooks().then(data => {
     Notify.failure('Sorry, there are no best sellers books. ');
     return;
   }
-  
+
   galleryTitle.insertAdjacentHTML('beforeend', createTitleMarcup());
   booksList.insertAdjacentHTML('beforeend', createBooklistMarcup(data));
 
@@ -24,53 +24,9 @@ function createTitleMarcup() {
   return 'Best Sellers <span class="gallery-heading-span">Books</span>';
 }
 
-// function createBooklistMarcup(data) {
-//   const markup = [];
-
-//   if (Array.isArray(data)) {
-//     data.forEach((element, i) => {
-//       const booksArr = data[i].books;
-//       const bookCards = [];
-
-//       booksArr.forEach(({ _id, book_image, title, author }) => {
-//         if (!book_image) {
-//           book_image = '../img/bestsellers/book-cover-min.png';
-//         }
-
-//         const bookCardsMarkup = `<li id="${_id}" class = "gallery-book-cards">
-//               <div class = "card-container">
-//                 <img class="gallery-books-img" src="${book_image}" alt="${title}" loading="lazy">
-//                 </div>
-//                 <h2 class="gallery-books-title">${title}</h2>
-//                 <p class="gallery-books-author">${author}</p>
-//                 </li>`;
-
-//         bookCards.push(bookCardsMarkup);
-//       });
-
-//       const btnSeeMore = `<button type="button" id="${data[i].list_name}" class="see-more">
-//         see more
-//       </button>`;
-
-//       markup.push(`<li class = "category-page">
-//             <p class = "gallery-category-heading">${data[i].list_name}</p>
-//             <ul class = "category-page-list">${bookCards.join('')}</ul>
-//             ${btnSeeMore}
-//             </li>`);
-//     });
-//   } else {
-//     console.error('data is not an array.');
-//   }
-
-//   return markup.join('');
-// }
-
-
-
 function createBooklistMarcup(data) {
   const object = data.data[0];
-
-  const ttt = object.books.map(rem => {
+  const createCards = object.books.map(rem => {
     if (!rem.book_image) {
       const bookImage = '../img/bestsellers/cover.jpg';
       return `<li id="${rem._id}" class = "gallery-book-cards">
@@ -81,24 +37,13 @@ function createBooklistMarcup(data) {
     <p class="gallery-books-author">${rem.author}</p>
     </li>`;
     }
-    return `<li id="${rem._id}" class = "gallery-book-cards">
+    return `<li id="${rem._id}" class = "gallery-book-cards"> <p class = "gallery-category-heading">${rem.list_name}</p>
   <div class = "card-container">
-  <img class="gallery-books-img" src="${rem.book_image}" alt="${rem.title}" loading="lazy">
-    </div>
-  <h2 class="gallery-books-title">${rem.title}</h2>
-  <p class="gallery-books-author">${rem.author}</p>
-    </li>
-    <button type="button" id="${rem.list_name}" class="see-more">
-  see more
-</button>`;
-    
-    // markup.push(`<li class = "category-page">
-    //  <p class = "gallery-category-heading">${data[i].list_name}</p>
-    //   <ul class = "category-page-list">${bookCards.join('')}</ul>
-    //    ${btnSeeMore}
-    //   </li>`);
+  <img class="gallery-books-img" src="${rem.book_image}" alt="${rem.title}" loading="lazy" width="435" height="485">
+  </div><h2 class="gallery-books-title">${rem.title}</h2><p class="gallery-books-author">${rem.author}</p>
+  <button type="button" id="${rem.list_name}" class="see-more">see more</button></li>`;
   });
-  return ttt;
+  return createCards.join('');
 }
 
 function onBtnOpen(evt) {
@@ -122,9 +67,7 @@ function onMoreBtnClick(e) {
 function addCardsByCategory() {
   selectedCategory(categoryValue).then(booksArr => {
     if (!booksArr.length) {
-      Notify.failure(
-        `Sorry, there are no ${categoryValue} books.`
-      );
+      Notify.failure`(Sorry, there are no ${categoryValue} books.)`;
       return;
     }
 
