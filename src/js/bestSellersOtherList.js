@@ -1,6 +1,6 @@
 import { topBooks, selectedCategory } from './api.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { modalOpen } from './popUp.js';
+// import { modalOpen } from './popUp.js';
 
 const booksList = document.querySelector('.js-gallery-books');
 const galleryTitle = document.querySelector('.gallery-heading');
@@ -11,8 +11,8 @@ topBooks().then(data => {
     return;
   }
 
-  galleryTitle.insertAdjacentHTML('beforeend', createTitleMarcup());
-  booksList.insertAdjacentHTML('beforeend', createBooklistMarcup(data));
+  galleryTitle.insertAdjacentHTML('beforeend', createTitleMarkup());
+  booksList.insertAdjacentHTML('beforeend', createBooklistMarkup(data));
 
   const galeryList = document.querySelectorAll('.gallery-book-cards');
   galeryList.forEach(element => {
@@ -20,11 +20,11 @@ topBooks().then(data => {
   });
 });
 
-function createTitleMarcup() {
+function createTitleMarkup() {
   return 'Best Sellers <span class="gallery-heading-span">Books</span>';
 }
 
-function createBooklistMarcup(data) {
+function createBooklistMarkup(data) {
   const object = data.data[0];
   const createCards = object.books.map(rem => {
     if (!rem.book_image) {
