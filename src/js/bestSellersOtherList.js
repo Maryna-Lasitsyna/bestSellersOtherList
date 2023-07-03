@@ -95,6 +95,9 @@ function createSelectCategoryBooks(arr) {
       return `<li id="${tot._id}" class = "gallery-book-cards">
   <div class = "card-container">
    <img class="gallery-books-img" src="${bookImage}" alt="${tot.title}" loading="lazy">
+   <div class="actions-card">
+            <p class="overlay">quick view</p>
+          </div> 
        </div>
    <h2 class="gallery-books-title">${tot.title}</h2>
    <p class="gallery-books-author">${tot.author}</p>
@@ -103,6 +106,9 @@ function createSelectCategoryBooks(arr) {
     return `<li id="${tot._id}" class = "gallery-book-cards"> <p class = "gallery-category-heading">${tot.list_name}</p>
 <div class = "card-container">
 <img class="gallery-books-img" src="${tot.book_image}" alt="${tot.title}" loading="lazy" width="435" height="485">
+<div class="actions-card">
+            <p class="overlay">quick view</p>
+          </div> 
 </div><h2 class="gallery-books-title">${tot.title}</h2><p class="gallery-books-author">${tot.author}</p>
 <button type="button" id="${tot.list_name}" class="see-more">see more</button></li>`;
   });
